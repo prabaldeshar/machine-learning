@@ -67,14 +67,3 @@ class Perceptron(object):
             ndarray: Label
         """
         return np.where(self.net_input(X) >= 0.0, 1, -1)
-
-    def accuracy(self, test_data: ndarray, test_labels: ndarray) -> float:
-        correct_predictions = 0
-        total_predictions = len(test_labels)
-        for X, label in zip(test_data, test_labels):
-            predicted_label = self.predict(X)
-            if label == predicted_label:
-                correct_predictions += 1
-
-        accuracy = (correct_predictions / total_predictions) * 100
-        return accuracy
