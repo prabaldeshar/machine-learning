@@ -1,14 +1,35 @@
-import numpy as np 
+import numpy as np
+from numpy import ndarray, float64
+
 
 class Perceptron(object):
+    def __init__(
+        self, learning_rate: float = 0.01, n_iter: int = 50, random_state: int = 1
+    ):
+        """Initialize the object
 
-    def __init__(self, learning_rate=0.01, n_iter=50, random_state=1):
+        Args:
+            learning_rate (float, optional): Learning rate. Defaults to 0.01.
+            n_iter (int, optional): Passes over the training dataset. Defaults to 50.
+            random_state (int, optional): Random number generator seed. Defaults to 1.
+        """
         self.learning_rate = learning_rate
         self.n_iter = n_iter
         self.random_state = random_state
 
-    def fit(self, X, y):
-        """Fit the training data"""
+    def fit(self, X: ndarray, y: ndarray):
+        """Fit the training data
+
+        Args:
+            X (ndarray): shape [n_examples, n_features]
+            Training vectors, where n_examples is the number of examples and
+            n_featutes is the number of features
+            y (ndarray): shape [n_examples]
+            Target values
+
+        Returns:
+            Perceptron: object
+        """
 
         rgen = np.random.RandomState(self.random_state)
         self.w_ = rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
@@ -21,16 +42,28 @@ class Perceptron(object):
                 self.w_[1:] += update * xi
                 self.w_[0] += update
                 errors += int(update != 0.0)
-            
-            self.errors_.append(errors)
 
+            self.errors_.append(errors)
         return self
 
-    def net_input(self, X):
-        """Calculate the net input"""
+    def net_input(self, X: ndarray) -> float64:
+        """Calculate the net input
+
+        Args:
+            X (ndarray): Input vectors
+
+        Returns:
+            float64: Net input
+        """
         return np.dot(X, self.w_[1:]) + self.w_[0]
 
-    def predict(self, X):
-        """Retrun the class label after unit step"""
-        return np.where(self.net_input(X) >= 0.0, 1, -1)
+    def predict(self, X: ndarray) -> ndarray:
+        """Predict the label
 
+        Args:
+            X (ndarray): Input vectors
+
+        Returns:
+            ndarray: Label
+        """
+        return np.where(self.net_input(X) >= 0.0, 1, -1)
