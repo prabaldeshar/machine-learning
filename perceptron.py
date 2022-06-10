@@ -30,17 +30,17 @@ class Perceptron(object):
         Returns:
             Perceptron: object
         """
-
+        breakpoint()
         rgen = np.random.RandomState(self.random_state)
-        self.w_ = rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
+        self.weights = rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
         self.errors_ = []
 
         for _ in range(self.n_iter):
             errors = 0
             for xi, target in zip(X, y):
                 update = self.learning_rate * (target - self.predict(xi))
-                self.w_[1:] += update * xi
-                self.w_[0] += update
+                self.weights[1:] += update * xi
+                self.weights[0] += update
                 errors += int(update != 0.0)
 
             self.errors_.append(errors)
@@ -55,7 +55,7 @@ class Perceptron(object):
         Returns:
             float64: Net input
         """
-        return np.dot(X, self.w_[1:]) + self.w_[0]
+        return np.dot(X, self.weights[1:]) + self.weights[0]
 
     def predict(self, X: ndarray) -> ndarray:
         """Predict the label
