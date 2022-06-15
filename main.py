@@ -4,8 +4,10 @@ from pandas import DataFrame
 from numpy import ndarray
 
 import os
+import sys
 
 from perceptron import Perceptron
+from adaline import AdalineGD
 
 
 def load_data(filepath) -> DataFrame:
@@ -31,8 +33,8 @@ def get_features(df: DataFrame) -> ndarray:
     return features
 
 
-def train_perceptron(ppn: Perceptron, features: ndarray, labels: ndarray) -> Perceptron:
-    trained_perceptron = ppn.fit(features, labels)
+def train_model(model, features: ndarray, labels: ndarray):
+    trained_perceptron = model.fit(features, labels)
     return trained_perceptron
 
 
@@ -42,8 +44,13 @@ def main():
     dataset = load_data(filepath)
     labels = get_labels(dataset)
     features = get_features(dataset)
-    new_perceptron = Perceptron(learning_rate=0.1, n_iter=10)
-    trained_perceptron = train_perceptron(new_perceptron, features, labels)
+
+    if sys.argv[1] == "perceptron":
+        new_perceptron = Perceptron(learning_rate=0.1, n_iter=10)
+        trained_model = train_model(new_perceptron, features, labels)
+    elif sys.argv[1] == "adaline":
+        new_adaline = AdalineGD(learning_rate=0.1, n_iter=10)
+        trained_model = train_model(new_adaline, features, labels)
 
 
 if __name__ == "__main__":
