@@ -1,4 +1,4 @@
-### Perceptron and Adaline
+# Machine Learning
 
 ## Chapter 2
 
