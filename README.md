@@ -11,7 +11,7 @@ The explanation and code for Adaline is in adaline.ipynb file.
 
 ## Chapter 3
 
-Linear Regresion Notebok [Linear Regression Notebook](https://github.com/prabaldeshar/perceptron/blob/main/ch_03_linear_logistic_regression/linear_regression.ipynb)
+Linear Regresion Notebook [Linear Regression Notebook](https://github.com/prabaldeshar/perceptron/blob/main/ch_03_linear_logistic_regression/linear_regression.ipynb)
 
-Logistic Regresion Notebok [Logistic Regression Notebook](https://github.com/prabaldeshar/perceptron/blob/main/ch_03_linear_logistic_regression/logistic_regression.ipynb)
+Logistic Regresion Notebook [Logistic Regression Notebook](https://github.com/prabaldeshar/perceptron/blob/main/ch_03_linear_logistic_regression/logistic_regression.ipynb)
 
